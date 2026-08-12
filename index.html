@@ -1573,7 +1573,9 @@ function displayProducts(){
 
         info.appendChild(order);
 
-        info.appendChild(del);
+        if(sessionStorage.getItem("patel_admin_logged_in") === "1"){
+    info.appendChild(del);
+        }
 
 
         card.appendChild(main);
@@ -1688,16 +1690,18 @@ Please availability bataiye.`;
 
 function deleteProduct(id){
 
+    if(sessionStorage.getItem("patel_admin_logged_in") !== "1"){
+        alert("🔐 Sirf Admin product delete kar sakta hai.");
+        return;
+    }
+
     if(
         !confirm(
             "Kya aap ye product delete karna chahte ho?"
         )
     ){
-
         return;
-
     }
-
 
     products =
         products.filter(
